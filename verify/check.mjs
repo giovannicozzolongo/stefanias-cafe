@@ -3,15 +3,21 @@
  *
  * Uso base (richiede dev server già attivo):
  *   node verify/check.mjs
- *   node verify/check.mjs --full          # analisi dettagliata
+ *   node verify/check.mjs --full
  *   node verify/check.mjs --url http://localhost:4322/stefanias-cafe/
  *
  * Uso auto (builda e avvia il server da solo):
- *   node verify/check.mjs --auto
  *   node verify/check.mjs --auto --full
  *
- * ANTHROPIC_API_KEY: leggila da variabile d'ambiente oppure mettila in .env
- * nella root del progetto: ANTHROPIC_API_KEY=sk-ant-...
+ * Integrazione Canva (opzionale):
+ *   Se in .env ci sono CANVA_API_TOKEN e CANVA_DESIGN_ID, lo script
+ *   scarica automaticamente l'ultima versione del design di Carlo prima
+ *   di fare il confronto. Nessun export manuale.
+ *
+ * .env richiesto:
+ *   ANTHROPIC_API_KEY=sk-ant-...
+ *   CANVA_API_TOKEN=...          # opzionale
+ *   CANVA_DESIGN_ID=...          # opzionale, es. DAFxxxxxxx
  */
 
 import Anthropic from '@anthropic-ai/sdk';
@@ -24,15 +30,12 @@ import { execSync, spawn } from 'child_process';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
-// Legge ANTHROPIC_API_KEY da .env se non è già in environment
-if (!process.env.ANTHROPIC_API_KEY) {
-  const envPath = path.join(ROOT, '.env');
-  if (fs.existsSync(envPath)) {
-    const lines = fs.readFileSync(envPath, 'utf8').split('\n');
-    for (const line of lines) {
-      const m = line.match(/^ANTHROPIC_API_KEY=(.+)$/);
-      if (m) { process.env.ANTHROPIC_API_KEY = m[1].trim(); break; }
-    }
+// Carica variabili da .env
+const envPath = path.join(ROOT, '.env');
+if (fs.existsSync(envPath)) {
+  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
+    const m = line.match(/^([A-Z_]+)=(.+)$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
   }
 }
 
@@ -46,39 +49,98 @@ const AUTO_MODE = args.includes('--auto');
 const FULL_MODE = args.includes('--full');
 let BASE_URL = urlIdx !== -1 ? args[urlIdx + 1] : 'http://localhost:4322/stefanias-cafe/';
 
-async function startServer() {
-  console.log('Rebuild in corso...');
-  execSync('npm run build --silent', { cwd: ROOT, stdio: 'inherit' });
+// ─── Canva ────────────────────────────────────────────────────────────────────
 
-  console.log('Avvio preview server...');
+async function fetchCanvaMockup() {
+  const token = process.env.CANVA_API_TOKEN;
+  const designId = process.env.CANVA_DESIGN_ID;
+  if (!token || !designId) return false;
+
+  console.log(`Scarico design aggiornato da Canva (${designId})...`);
+
+  // 1. Crea job di export
+  const createRes = await fetch(`https://api.canva.com/rest/v1/designs/${designId}/exports`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ format: { type: 'png' }, pages: [1] }),
+  });
+
+  if (!createRes.ok) {
+    const err = await createRes.text();
+    console.warn(`Canva export fallito (${createRes.status}): ${err}`);
+    return false;
+  }
+
+  const { job } = await createRes.json();
+  const jobId = job.id;
+
+  // 2. Polling fino a completamento (max 30s)
+  let downloadUrl = null;
+  for (let i = 0; i < 15; i++) {
+    await new Promise(r => setTimeout(r, 2000));
+    const pollRes = await fetch(`https://api.canva.com/rest/v1/exports/${jobId}`, {
+      headers: { 'Authorization': `Bearer ${token}` },
+    });
+    const data = await pollRes.json();
+    if (data.job?.status === 'success') {
+      downloadUrl = data.job.urls?.[0] ?? data.job.pages?.[0]?.url;
+      break;
+    }
+    if (data.job?.status === 'failed') {
+      console.warn('Canva export fallito.');
+      return false;
+    }
+  }
+
+  if (!downloadUrl) {
+    console.warn('Timeout export Canva.');
+    return false;
+  }
+
+  // 3. Scarica e salva come mockup.png
+  const imgRes = await fetch(downloadUrl);
+  const buf = Buffer.from(await imgRes.arrayBuffer());
+  fs.writeFileSync(MOCKUP_PATH, buf);
+  console.log('Mockup aggiornato da Canva.');
+  return true;
+}
+
+// ─── Server ───────────────────────────────────────────────────────────────────
+
+async function startServer() {
+  console.log('Build in corso...');
+  execSync('npm run build --silent', { cwd: ROOT, stdio: 'inherit' });
   const port = 4399;
   BASE_URL = `http://localhost:${port}/stefanias-cafe/`;
   const server = spawn('npm', ['run', 'preview', '--', '--port', String(port)], {
-    cwd: ROOT,
-    stdio: 'pipe',
-    detached: false,
+    cwd: ROOT, stdio: 'pipe', detached: false,
   });
   await new Promise(r => setTimeout(r, 2500));
   return server;
 }
+
+// ─── Screenshot ───────────────────────────────────────────────────────────────
 
 async function takeScreenshot() {
   console.log(`Screenshot di ${BASE_URL} ...`);
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.setViewportSize({ width: 1440, height: 900 });
-
   try {
     await page.goto(BASE_URL, { waitUntil: 'networkidle', timeout: 15000 });
   } catch {
     await page.goto(BASE_URL, { waitUntil: 'load', timeout: 15000 });
   }
-
   await page.waitForTimeout(1200);
   await page.screenshot({ path: SCREENSHOT_PATH, fullPage: true });
   await browser.close();
   console.log(`Salvato: ${SCREENSHOT_PATH}`);
 }
+
+// ─── Confronto AI ─────────────────────────────────────────────────────────────
 
 async function compare(mockupB64, currentB64) {
   const client = new Anthropic();
@@ -114,41 +176,40 @@ Analizza ogni sezione del sito con precisione:
 - Immagine di sfondo: quale foto, crop, brightness dell'overlay
 - Titolo: font family, dimensione, weight, colore, interlinea
 - Sottotitolo: stile, colore
-- Bottone CTA: stile, bordo, colore, hover state
+- Bottone CTA: stile, bordo, colore
 
 **3. ABOUT**
-- Layout grid: proporzioni colonne (es. 55/45)
+- Layout grid: proporzioni colonne
 - Heading: dimensione, weight, colore
-- Immagine: aspect ratio, object-fit, border-radius
+- Immagine: aspect ratio, object-fit
 
 **4. RESERVATION**
 - Calendario: colori, dimensioni celle, stile selected
-- Time slots: dimensioni, colori (normale vs selected vs hover)
+- Time slots: dimensioni, colori (normale vs selected)
 - Bottoni Back/Book Now: stile, colori
 
 **5. FEATURES**
 - Intestazione: font, dimensioni
-- Card: altezza, aspect ratio immagine, overlay label (posizione, background, colore testo)
+- Card: altezza immagine, posizione testo (sopra/sotto immagine), colori
 
 **6. STORY**
-- Immagine bg: quale foto, overlay opacity
+- Immagine bg: overlay opacity
 - Titolo e testo: colori, dimensioni
 
 **7. MENU**
 - Layout: proporzioni colonne
 - Intestazioni sezioni: border-bottom, colore
-- Item: font size, weight nome vs peso
+- Item: font size, weight nome vs prezzo
 - Prezzo: colore, allineamento
 
 **8. REVIEWS**
 - Background: colore esatto
 - Stelle: colore, dimensione
-- Layout card: padding, border-radius
 
 **9. INFO**
-- Background foto: quale immagine, overlay
+- Background: overlay dark o light?
 - Lista servizi: font, colore
-- Tabella orari: colori, evidenziazione ore specifiche
+- Tabella orari: colori, righe evidenziate
 
 **10. FOOTER**
 - Background: colore
@@ -183,21 +244,23 @@ In caso di FAIL, elenca i 5 fix più impattanti in ordine di priorità.`;
   return response.content[0].type === 'text' ? response.content[0].text : '';
 }
 
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
 async function main() {
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('ANTHROPIC_API_KEY non trovata. Aggiungila a .env o esportala nel terminale.');
+    console.error('ANTHROPIC_API_KEY non trovata. Aggiungila a .env');
     process.exit(1);
   }
 
-  if (!fs.existsSync(MOCKUP_PATH)) {
-    console.error(`Mockup non trovato: ${MOCKUP_PATH}`);
+  // Aggiorna mockup da Canva se configurato, altrimenti usa quello locale
+  const canvaUsed = await fetchCanvaMockup();
+  if (!canvaUsed && !fs.existsSync(MOCKUP_PATH)) {
+    console.error(`Mockup non trovato: ${MOCKUP_PATH}\nConfigura CANVA_API_TOKEN + CANVA_DESIGN_ID in .env oppure metti il file mockup.png manualmente.`);
     process.exit(1);
   }
 
   let server = null;
-  if (AUTO_MODE) {
-    server = await startServer();
-  }
+  if (AUTO_MODE) server = await startServer();
 
   try {
     await takeScreenshot();
@@ -205,19 +268,17 @@ async function main() {
     const mockupB64 = fs.readFileSync(MOCKUP_PATH).toString('base64');
     const currentB64 = fs.readFileSync(SCREENSHOT_PATH).toString('base64');
 
-    console.log(`\nConfrontando mockup vs screenshot${FULL_MODE ? ' (analisi completa)' : ''}...\n`);
+    console.log(`\nConfronto mockup vs screenshot${FULL_MODE ? ' (analisi completa)' : ''}...\n`);
     const report = await compare(mockupB64, currentB64);
 
     console.log('─'.repeat(70));
     console.log(report);
     console.log('─'.repeat(70));
 
-    const timestamp = new Date().toISOString();
-    fs.writeFileSync(REPORT_PATH, `${timestamp}\nMODE: ${FULL_MODE ? 'FULL' : 'QUICK'}\n\n${report}\n`);
+    fs.writeFileSync(REPORT_PATH, `${new Date().toISOString()}\nMODE: ${FULL_MODE ? 'FULL' : 'QUICK'}\n${canvaUsed ? 'MOCKUP: Canva live\n' : ''}\n${report}\n`);
     console.log(`\nReport salvato: ${REPORT_PATH}`);
 
-    const failed = report.toUpperCase().includes('ESITO: FAIL');
-    process.exit(failed ? 1 : 0);
+    process.exit(report.toUpperCase().includes('ESITO: FAIL') ? 1 : 0);
   } finally {
     if (server) server.kill();
   }
