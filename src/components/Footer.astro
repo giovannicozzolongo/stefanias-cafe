@@ -1,126 +1,124 @@
 ---
 ---
-
 <footer class="footer">
-  <div class="container footer-inner">
+  <div class="footer-top container">
     <div class="footer-brand">
-      <img src="/img/logo.png" alt="Stefania's Cafè" width="100" />
-      <p>Neapolitanische Küche<br />in Erlangen seit 2019.</p>
+      <img src="/stefanias-cafe/img/logo.png" alt="Stefania's Cafè" />
+      <p>Neapolitanische Küche in Erlangen.</p>
     </div>
 
-    <div class="footer-links">
-      <a href="#about">Über uns</a>
-      <a href="#menu">Speisekarte</a>
-      <a href="#hours">Öffnungszeiten</a>
-      <a href="#contact">Kontakt</a>
+    <nav class="footer-nav">
+      <a href="#hero">Home</a>
+      <a href="#menu">Menù</a>
+      <a href="#fruehstueck">Frühstück</a>
+      <a href="#orari">Öffnungszeiten</a>
+      <a href="#kontakt">Kontakt</a>
       <a href="#reservation">Reservieren</a>
-    </div>
+    </nav>
 
     <div class="footer-social">
       <a href="https://instagram.com/stefanias_cafe" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
-        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
       </a>
-      <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-        </svg>
+      <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
       </a>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 Stefania's Cafè · Schiffstraße 12, 91054 Erlangen</p>
-    <p class="footer-impressum">Steuer-Nr.: MLISFN83B63F839T · <a href="mailto:stefy.milo@libero.it">stefy.milo@libero.it</a></p>
+    <div class="container footer-bottom-inner">
+      <p>© 2026 Stefania's Cafè · Schiffstraße 12, 91054 Erlangen</p>
+      <p>Steuer-Nr.: MLISFN83B63F839T</p>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--color-dark);
-    color: rgba(255, 244, 240, 0.7);
-    padding: 4rem 0 0;
+    background: var(--c-black);
   }
 
-  .footer-inner {
+  .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 3rem;
-    flex-wrap: wrap;
+    padding-top: 4rem;
     padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255, 244, 240, 0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: wrap;
   }
 
   .footer-brand img {
-    filter: brightness(0) invert(1) opacity(0.9);
-    margin-bottom: 1rem;
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    margin-bottom: 0.75rem;
   }
 
   .footer-brand p {
-    font-size: 0.85rem;
-    line-height: 1.7;
+    font-size: 0.8rem;
+    color: rgba(245,236,215,0.45);
   }
 
-  .footer-links {
+  .footer-nav {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
-  .footer-links a {
-    font-size: 0.8rem;
-    font-weight: 600;
+  .footer-nav a {
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255, 244, 240, 0.6);
-    transition: color 0.2s;
+    color: rgba(245,236,215,0.5);
+    transition: color 0.15s;
   }
 
-  .footer-links a:hover {
-    color: var(--color-primary);
-  }
+  .footer-nav a:hover { color: var(--c-cream); }
 
   .footer-social {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .footer-social a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(255, 244, 240, 0.2);
-    color: rgba(255, 244, 240, 0.6);
-    transition: all 0.2s;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(245,236,215,0.15);
+    color: rgba(245,236,215,0.5);
+    transition: all 0.15s;
   }
 
   .footer-social a:hover {
-    border-color: var(--color-secondary);
-    color: var(--color-primary);
+    border-color: var(--c-accent);
+    color: var(--c-cream);
   }
 
   .footer-bottom {
-    padding: 1.5rem 1.5rem;
-    text-align: center;
-    font-size: 0.75rem;
-    color: rgba(255, 244, 240, 0.4);
+    padding: 1.25rem 0;
+  }
+
+  .footer-bottom-inner {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 
-  .footer-bottom a {
-    color: rgba(255, 244, 240, 0.4);
+  .footer-bottom p {
+    font-size: 0.72rem;
+    color: rgba(245,236,215,0.25);
   }
 
-  .footer-bottom a:hover {
-    color: rgba(255, 244, 240, 0.7);
+  @media (max-width: 720px) {
+    .footer-top { flex-direction: column; gap: 2rem; }
+    .footer-bottom-inner { flex-direction: column; }
   }
 </style>

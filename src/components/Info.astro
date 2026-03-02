@@ -1,75 +1,48 @@
 ---
 const hours = [
-  { day: "Montag", time: "Geschlossen" },
-  { day: "Dienstag", time: "09:00 – 17:00" },
-  { day: "Mittwoch", time: "09:00 – 17:00" },
+  { day: "Montag",     time: "Geschlossen", closed: true },
+  { day: "Dienstag",   time: "09:00 – 17:00" },
+  { day: "Mittwoch",   time: "09:00 – 17:00" },
   { day: "Donnerstag", time: "09:00 – 17:00" },
-  { day: "Freitag", time: "09:00 – 17:00" },
-  { day: "Samstag", time: "09:00 – 18:00" },
-  { day: "Sonntag", time: "09:00 – 18:00" },
+  { day: "Freitag",   time: "09:00 – 17:00" },
+  { day: "Samstag",   time: "09:00 – 18:00" },
+  { day: "Sonntag",   time: "09:00 – 18:00" },
 ];
 
 const services = [
-  "Barrierefrei",
-  "Büfett",
-  "Außenbereich",
-  "Private Veranstaltungen",
+  "Frühstück & Brunch",
+  "Mittagessen",
+  "Aperitivo",
   "Essen zum Mitnehmen",
-  "Hochzeiten",
+  "Private Veranstaltungen",
+  "Catering",
   "Kostenloses WLAN",
+  "Außenbereich",
   "Haustiere erlaubt",
 ];
-
-const payments = [
-  "Barzahlung",
-  "EC-Karte",
-  "Kontaktloses Bezahlen",
-  "MasterCard",
-  "VISA",
-  "Überweisung",
-];
 ---
-
-<section class="info" id="hours">
+<section class="info" id="orari">
   <div class="container info-grid">
     <div class="info-col">
-      <p class="section-label">Öffnungszeiten</p>
-      <h2 class="section-title" style="font-size: 1.75rem">Wann wir <em>da sind</em></h2>
-      <ul class="hours-list">
-        {hours.map(h => (
-          <li class={`hours-item ${h.time === 'Geschlossen' ? 'closed' : ''}`}>
-            <span class="hours-day">{h.day}</span>
-            <span class="hours-time">{h.time}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <div class="info-col">
-      <p class="section-label">Services</p>
-      <h2 class="section-title" style="font-size: 1.75rem">Was wir <em>anbieten</em></h2>
+      <h3 class="info-title">Dienstleistungen</h3>
       <ul class="services-list">
         {services.map(s => (
-          <li class="services-item">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8l3.5 3.5L13 4" stroke="#895a45" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            {s}
+          <li class="service-item">
+            <span class="check">✓</span> {s}
           </li>
         ))}
       </ul>
     </div>
 
+    <div class="info-divider"></div>
+
     <div class="info-col">
-      <p class="section-label">Zahlung</p>
-      <h2 class="section-title" style="font-size: 1.75rem">Wie ihr <em>zahlt</em></h2>
-      <ul class="services-list">
-        {payments.map(p => (
-          <li class="services-item">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8l3.5 3.5L13 4" stroke="#895a45" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            {p}
+      <h3 class="info-title">Öffnungszeiten</h3>
+      <ul class="hours-list">
+        {hours.map(h => (
+          <li class:list={["hours-item", { closed: h.closed }]}>
+            <span class="day">{h.day}</span>
+            <span class="time">{h.time}</span>
           </li>
         ))}
       </ul>
@@ -79,89 +52,82 @@ const payments = [
 
 <style>
   .info {
-    padding: var(--section-pad);
-    background: var(--color-dark);
-    color: var(--color-primary);
+    background: var(--c-white);
+    padding: var(--pad-section);
+    border-top: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--c-border);
   }
 
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1px 1fr;
     gap: 4rem;
+    align-items: start;
   }
 
-  .info .section-label {
-    color: rgba(255, 244, 240, 0.5);
+  .info-divider {
+    background: var(--c-border);
+    height: 100%;
+    min-height: 200px;
   }
 
-  .info .section-title {
-    color: var(--color-primary);
-  }
-
-  .info .section-title em {
-    color: #f0c9b4;
-  }
-
-  .hours-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .hours-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255, 244, 240, 0.1);
-    font-size: 0.9rem;
-  }
-
-  .hours-item.closed .hours-time {
-    color: rgba(255, 244, 240, 0.3);
-    font-style: italic;
-  }
-
-  .hours-day {
-    color: rgba(255, 244, 240, 0.7);
-  }
-
-  .hours-time {
-    color: var(--color-primary);
-    font-weight: 600;
+  .info-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: 1.5rem;
   }
 
   .services-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
-  .services-item {
+  .service-item {
+    font-size: 0.875rem;
+    color: var(--c-muted);
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.9rem;
-    color: rgba(255, 244, 240, 0.85);
+    gap: 0.6rem;
   }
 
-  .services-item svg {
+  .check {
+    color: var(--c-accent);
+    font-weight: 700;
     flex-shrink: 0;
   }
 
-  @media (max-width: 900px) {
-    .info-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
+  .hours-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
   }
 
-  @media (max-width: 540px) {
+  .hours-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--c-border);
+    font-size: 0.875rem;
+  }
+
+  .hours-item:last-child { border-bottom: none; }
+
+  .day { color: var(--c-text); }
+
+  .time { color: var(--c-text); font-weight: 700; }
+
+  .closed .day,
+  .closed .time { color: rgba(74,52,51,0.4); font-weight: 400; }
+
+  @media (max-width: 720px) {
     .info-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
+    .info-divider { display: none; }
   }
 </style>

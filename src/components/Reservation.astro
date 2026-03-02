@@ -1,25 +1,18 @@
 ---
 ---
-
 <section class="reservation" id="reservation">
-  <div class="reservation-bg">
-    <img src="/img/menu-colazione.jpg" alt="" aria-hidden="true" />
-    <div class="reservation-overlay"></div>
-  </div>
-  <div class="container reservation-inner">
-    <div class="reservation-text">
-      <p class="section-label" style="color: rgba(255,244,240,0.7)">Reservierung</p>
-      <h2 class="section-title" style="color: white">
-        Tisch reservieren.<br />
-        <em style="color: #f0c9b4">Wir freuen uns auf euch.</em>
-      </h2>
-      <p style="color: rgba(255,244,240,0.8); margin-bottom: 1.5rem; line-height: 1.7;">
-        Schickt uns einfach eine Anfrage — wir melden uns so schnell wie möglich.
-        Per telefono: <a href="tel:+499131205868" style="color: #f0c9b4; font-weight: 600;">+49 9131 205868</a>
+  <div class="res-inner container">
+    <div class="res-text">
+      <p class="section-tag">Reservierung</p>
+      <h2 class="section-heading" style="color: var(--c-cream)">Einen Tisch<br/>reservieren</h2>
+      <p class="res-sub">
+        Schickt uns eure Anfrage — wir melden uns schnellstmöglich zurück.
+        Telefonisch erreichbar unter
+        <a href="tel:+499131205868">+49 9131 205868</a>.
       </p>
     </div>
 
-    <form class="reservation-form" id="reservation-form" novalidate>
+    <form class="res-form" id="res-form" novalidate>
       <div class="form-row">
         <div class="form-group">
           <label for="r-name">Name</label>
@@ -27,7 +20,7 @@
         </div>
         <div class="form-group">
           <label for="r-phone">Telefon</label>
-          <input type="tel" id="r-phone" name="phone" placeholder="+49 ..." required />
+          <input type="tel" id="r-phone" name="phone" placeholder="+49 ..." />
         </div>
       </div>
       <div class="form-row">
@@ -37,13 +30,13 @@
         </div>
         <div class="form-group">
           <label for="r-time">Uhrzeit</label>
-          <input type="time" id="r-time" name="time" min="09:00" max="18:00" required />
+          <input type="time" id="r-time" name="time" min="09:00" max="18:00" />
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label for="r-guests">Gäste</label>
-          <select id="r-guests" name="guests" required>
+          <select id="r-guests" name="guests">
             <option value="">Anzahl wählen</option>
             {[1,2,3,4,5,6,7,8].map(n => (
               <option value={n}>{n} {n === 1 ? 'Person' : 'Personen'}</option>
@@ -55,62 +48,44 @@
           <input type="email" id="r-email" name="email" placeholder="ihre@email.de" />
         </div>
       </div>
-      <div class="form-group">
-        <label for="r-message">Nachricht (optional)</label>
-        <textarea id="r-message" name="message" rows="3" placeholder="Allergien, Anlässe, Besonderes..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width: 100%">
-        Reservierung anfragen
+      <button type="submit" class="btn btn-cream" style="width:100%">
+        Reservierungsanfrage senden
       </button>
-      <p class="form-note">
-        Die Anfrage wird per E-Mail an Stefania weitergeleitet.
-        Eine Bestätigung folgt telefonisch oder per E-Mail.
-      </p>
     </form>
   </div>
 </section>
 
 <style>
   .reservation {
-    position: relative;
-    padding: var(--section-pad);
+    background: var(--c-brown);
+    padding: var(--pad-section);
   }
 
-  .reservation-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-
-  .reservation-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(2px) brightness(0.4);
-    transform: scale(1.05);
-  }
-
-  .reservation-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(26, 15, 14, 0.6);
-  }
-
-  .reservation-inner {
-    position: relative;
-    z-index: 1;
+  .res-inner {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: 5rem;
     align-items: start;
   }
 
-  .reservation-form {
-    background: white;
-    padding: 2.5rem;
+  .res-sub {
+    font-size: 0.9rem;
+    color: rgba(245,236,215,0.7);
+    line-height: 1.75;
+    margin-top: 1.25rem;
+  }
+
+  .res-sub a {
+    color: var(--c-cream);
+    font-weight: 700;
+  }
+
+  .res-form {
+    background: rgba(0,0,0,0.25);
+    padding: 2.25rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .form-row {
@@ -122,69 +97,51 @@
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-text);
+    color: rgba(245,236,215,0.6);
   }
 
-  input, select, textarea {
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-light);
-    color: var(--color-text);
+  input, select {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    padding: 0.65rem 0.875rem;
+    border: 1px solid rgba(245,236,215,0.2);
+    background: rgba(0,0,0,0.2);
+    color: var(--c-cream);
     outline: none;
-    transition: border-color 0.2s;
     width: 100%;
   }
 
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--color-secondary);
+  input::placeholder { color: rgba(245,236,215,0.35); }
+
+  input:focus, select:focus {
+    border-color: var(--c-accent);
   }
 
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-
-  .form-note {
-    font-size: 0.75rem;
-    color: #9a7a75;
-    text-align: center;
-    line-height: 1.5;
-  }
+  select option { background: var(--c-brown); color: var(--c-cream); }
 
   @media (max-width: 900px) {
-    .reservation-inner {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
+    .res-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   }
 
   @media (max-width: 480px) {
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-
-    .reservation-form {
-      padding: 1.5rem;
-    }
+    .form-row { grid-template-columns: 1fr; }
+    .res-form { padding: 1.5rem; }
   }
 </style>
 
 <script>
-  const form = document.getElementById('reservation-form') as HTMLFormElement;
-  form?.addEventListener('submit', (e) => {
+  document.getElementById('res-form')?.addEventListener('submit', e => {
     e.preventDefault();
-    const data = new FormData(form);
-    const body = `Reservierungsanfrage:\n\nName: ${data.get('name')}\nTelefon: ${data.get('phone')}\nE-Mail: ${data.get('email')}\nDatum: ${data.get('date')}\nUhrzeit: ${data.get('time')}\nGäste: ${data.get('guests')}\nNachricht: ${data.get('message')}`;
-    window.location.href = `mailto:m_stefy83@yahoo.it?subject=Reservierungsanfrage Stefanias Cafè&body=${encodeURIComponent(body)}`;
+    const d = new FormData(e.target as HTMLFormElement);
+    const body = `Name: ${d.get('name')}\nTel: ${d.get('phone')}\nEmail: ${d.get('email')}\nDatum: ${d.get('date')}\nUhrzeit: ${d.get('time')}\nGäste: ${d.get('guests')}`;
+    window.location.href = `mailto:m_stefy83@yahoo.it?subject=Reservierungsanfrage&body=${encodeURIComponent(body)}`;
   });
 </script>

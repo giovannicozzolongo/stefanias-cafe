@@ -1,5 +1,5 @@
 ---
-const colazione = [
+const fruehstueck = [
   { name: "Italienisch", desc: "Cappuccino + Cornetto", price: "5,50" },
   { name: "Stefanias", desc: "Toast Schinken/Käse + Heißes Getränk", price: "9,00" },
   { name: "Deutsch", desc: "Brot, Käse, Salat, Gurken, Tomaten, Lachs, Spiegelei", price: "9,40" },
@@ -10,94 +10,77 @@ const colazione = [
 ];
 
 const piatti = [
-  { name: "Omelette", desc: "Schinken und Mozzarella oder Paprika und Mozzarella", price: "8,80" },
-  { name: "Bruschetta", desc: "Hausgemacht mit frischen Tomaten und Basilikum", price: "7,50" },
+  { name: "Omelette", desc: "Schinken & Mozzarella oder Paprika & Mozzarella", price: "8,80" },
+  { name: "Bruschetta", desc: "Hausgemacht mit frischen Tomaten & Basilikum", price: "7,50" },
   { name: "Gefüllte Nudeln", desc: "Mit hausgemachter Füllung der Saison", price: "12,50" },
-  { name: "Pinsa", desc: "Schinken und Mozzarella, knusprig gebacken", price: "11,20" },
-  { name: "Nudeln mit Lachs", desc: "Mit Sahne und Lachs — Neuheit!", price: "14,80", tag: "Neu" },
-  { name: "Lasagna", desc: "Klassisch, hausgemacht", price: "13,50" },
+  { name: "Pinsa", desc: "Schinken & Mozzarella, knusprig gebacken", price: "11,20" },
+  { name: "Nudeln mit Lachs", desc: "Sahne & Lachs — Neuheit!", price: "14,80", new: true },
+  { name: "Lasagna", desc: "Klassisch, selbst gemacht", price: "13,50" },
 ];
 ---
-
 <section class="menu" id="menu">
   <div class="container">
-    <div class="menu-header">
-      <p class="section-label">Speisekarte</p>
-      <h2 class="section-title">Cosa mangiamo <em>oggi?</em></h2>
-    </div>
 
-    <div class="menu-photo">
-      <img src="/img/menu-colazione.jpg" alt="Frühstück Menütafel" />
-      <img src="/img/menu-piatti.jpg" alt="Speisekarte Menütafel" />
+    <div class="menu-header" id="fruehstueck">
+      <p class="section-tag">Das Neapolitanische Frühstück in Deutschland</p>
+      <h2 class="section-heading">Buona colazione!</h2>
+      <p class="menu-sub">
+        Frühstück wie in Neapel — mit deutschem Touch. Jede Bestellung wird frisch zubereitet.
+      </p>
     </div>
 
     <div class="menu-grid">
       <div class="menu-col">
-        <h3 class="menu-col-title">Frühstück</h3>
-        <p class="menu-col-sub">Buona colazione!</p>
+        <h3 class="col-title">Frühstück</h3>
         <ul class="menu-list">
-          {colazione.map(item => (
+          {fruehstueck.map(item => (
             <li class="menu-item">
-              <div class="menu-item-info">
-                <span class="menu-item-name">{item.name}</span>
-                <span class="menu-item-desc">{item.desc}</span>
+              <div class="item-info">
+                <span class="item-name">{item.name}</span>
+                <span class="item-desc">{item.desc}</span>
               </div>
-              <span class="menu-item-price">{item.price} €</span>
+              <span class="item-price">{item.price} €</span>
             </li>
           ))}
         </ul>
       </div>
 
       <div class="menu-col">
-        <h3 class="menu-col-title">Speisekarte</h3>
-        <p class="menu-col-sub">Piatti del giorno</p>
+        <h3 class="col-title">Speisekarte</h3>
         <ul class="menu-list">
           {piatti.map(item => (
             <li class="menu-item">
-              <div class="menu-item-info">
-                <span class="menu-item-name">
+              <div class="item-info">
+                <span class="item-name">
                   {item.name}
-                  {item.tag && <span class="tag">{item.tag}</span>}
+                  {item.new && <span class="badge-new">Neu</span>}
                 </span>
-                <span class="menu-item-desc">{item.desc}</span>
+                <span class="item-desc">{item.desc}</span>
               </div>
-              <span class="menu-item-price">{item.price} €</span>
+              <span class="item-price">{item.price} €</span>
             </li>
           ))}
         </ul>
       </div>
     </div>
+
   </div>
 </section>
 
 <style>
   .menu {
-    padding: var(--section-pad);
-    background: var(--color-bg);
+    background: var(--c-white);
+    padding: var(--pad-section);
   }
 
   .menu-header {
-    text-align: center;
     margin-bottom: 3rem;
   }
 
-  .menu-photo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 4rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .menu-photo img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    object-position: center top;
+  .menu-sub {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    margin-top: 0.5rem;
   }
 
   .menu-grid {
@@ -106,94 +89,72 @@ const piatti = [
     gap: 4rem;
   }
 
-  .menu-col-title {
-    font-family: var(--font-serif);
-    font-size: 1.75rem;
-    color: var(--color-text);
-    margin-bottom: 0.25rem;
-  }
-
-  .menu-col-sub {
-    font-size: 0.8rem;
-    color: var(--color-secondary);
-    letter-spacing: 0.05em;
-    font-style: italic;
-    margin-bottom: 2rem;
+  .col-title {
+    font-family: var(--font-brand);
+    font-size: 1.6rem;
+    color: var(--c-text);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--c-border);
   }
 
   .menu-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   .menu-item {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-border);
+    gap: 1.25rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--c-border);
   }
 
-  .menu-item:last-child {
-    border-bottom: none;
-  }
+  .menu-item:last-child { border-bottom: none; }
 
-  .menu-item-info {
+  .item-info {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    flex: 1;
   }
 
-  .menu-item-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--color-text);
+  .item-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--c-text);
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
 
-  .tag {
-    font-size: 0.65rem;
+  .badge-new {
+    font-size: 0.6rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: var(--color-secondary);
+    background: var(--c-accent);
     color: white;
-    padding: 0.15rem 0.4rem;
+    padding: 0.1rem 0.4rem;
   }
 
-  .menu-item-desc {
-    font-size: 0.8rem;
-    color: #9a7a75;
-    line-height: 1.4;
+  .item-desc {
+    font-size: 0.78rem;
+    color: var(--c-muted);
+    line-height: 1.5;
   }
 
-  .menu-item-price {
-    font-family: var(--font-serif);
+  .item-price {
+    font-family: var(--font-brand);
     font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--color-secondary);
+    color: var(--c-accent);
     white-space: nowrap;
     padding-top: 0.1rem;
   }
 
-  @media (max-width: 768px) {
-    .menu-photo {
-      grid-template-columns: 1fr;
-    }
-
-    .menu-photo img {
-      height: 220px;
-    }
-
-    .menu-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
+  @media (max-width: 720px) {
+    .menu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   }
 </style>

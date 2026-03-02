@@ -1,0 +1,90 @@
+---
+const reviews = [
+  {
+    text: "Das beste Frühstück in Erlangen! Alles frisch, liebevoll zubereitet. Man fühlt sich wie in Neapel.",
+    name: "Maria K.",
+    stars: 5,
+  },
+  {
+    text: "Stefania ist unglaublich herzlich. Die Lasagna ist einfach die Beste der Stadt. Wir kommen immer wieder.",
+    name: "Thomas B.",
+    stars: 5,
+  },
+  {
+    text: "Endlich echter italienischer Espresso in Erlangen. Kleine Perle in der Schiffstraße!",
+    name: "Laura M.",
+    stars: 5,
+  },
+];
+---
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <p class="section-tag">Kundenstimmen</p>
+      <h2 class="section-heading">Was unsere Gäste sagen</h2>
+    </div>
+    <div class="reviews-grid">
+      {reviews.map(r => (
+        <div class="review-card">
+          <div class="stars" aria-label={`${r.stars} von 5 Sternen`}>
+            {"★".repeat(r.stars)}
+          </div>
+          <p class="review-text">"{r.text}"</p>
+          <p class="review-name">— {r.name}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    background: var(--c-cream);
+    padding: var(--pad-section);
+  }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: var(--c-white);
+    padding: 2rem 1.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stars {
+    color: #F5C518;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .review-text {
+    font-size: 0.875rem;
+    color: var(--c-muted);
+    line-height: 1.75;
+    font-style: italic;
+    flex: 1;
+  }
+
+  .review-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--c-text);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 720px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
+</style>

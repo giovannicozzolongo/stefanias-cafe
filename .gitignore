@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# tooling locale (non parte del sito)
+verify/
+.claude/
+CLAUDE.md

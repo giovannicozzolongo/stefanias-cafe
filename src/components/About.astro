@@ -1,137 +1,75 @@
 ---
 ---
-
 <section class="about" id="about">
-  <div class="container about-inner">
-    <div class="about-text">
-      <p class="section-label">Über uns</p>
-      <h2 class="section-title">
-        Kein gewöhnliches Café.<br />
-        <em>Napoli in Erlangen.</em>
-      </h2>
-      <p class="about-body">
-        Stefania's Cafè è nata da un sogno: portare la tradizione di Napoli fin qui,
-        a Erlangen. Dal caffè al dolce, passando per vini e aperitivi.
-        Un posto semplice, curato in ogni dettaglio, dove si mangia davvero bene.
-      </p>
-      <p class="about-body de">
-        Stefanias Cafè entstand aus dem Traum, die Kultur meiner Stadt Neapel
-        nach Deutschland zu bringen. Vom Kaffee bis zu den typischen Süßspeisen,
-        sowie Wein und Aperitive. Jedes Detail ist gepflegt — genau wie unser Menü.
-        Frische Zutaten, alles selbst gemacht.
-      </p>
-      <div class="about-badges">
-        <div class="badge">
-          <span class="badge-num">100%</span>
-          <span class="badge-label">Hausgemacht</span>
-        </div>
-        <div class="badge">
-          <span class="badge-num">Napoli</span>
-          <span class="badge-label">Tradition seit 1983</span>
-        </div>
-        <div class="badge">
-          <span class="badge-num">Erlangen</span>
-          <span class="badge-label">Schiffstraße 12</span>
-        </div>
-      </div>
-    </div>
-    <div class="about-image">
-      <img src="/img/menu-colazione.jpg" alt="Frühstückstafel bei Stefania's Cafè" />
-    </div>
+  <div class="about-text">
+    <p>
+      Wir sind kein gewöhnliches Kaffeehaus. Entdeckt uns mit allen Sinnen.
+      Stefania bringt die neapolitanische Küche direkt in euer Leben —
+      mit frischen Zutaten, echten Rezepten und der Wärme eines Familienbetriebs.
+      Ob Frühstück, Mittagstisch oder Aperitivo: jeder Besuch ist ein kleines Stück Italien.
+    </p>
+    <p>
+      Stefanias Cafè nasce da un sogno che è quello di esportare la tradizione della mia terra, Napoli.
+      Partendo dal caffè fino al dolce, passando per vini ed aperitivi. Il locale offre un ambiente
+      semplice, ma curato in ogni particolare. Puntiamo sulla semplicità e sull'originalità, per questo
+      troverete sempre prodotti freschi preparati da noi.
+    </p>
+  </div>
+  <div class="about-photo">
+    <img src="/stefanias-cafe/img/menu-colazione.jpg" alt="Menu colazione Stefania's Cafè" />
   </div>
 </section>
 
 <style>
   .about {
-    padding: var(--section-pad);
-    background: var(--color-light);
-  }
-
-  .about-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+    min-height: 340px;
   }
 
-  .about-body {
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-    color: var(--color-text);
-  }
-
-  .about-body.de {
-    color: #7a6260;
-    font-size: 0.9rem;
-    border-left: 3px solid var(--color-border);
-    padding-left: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  .about-badges {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .badge {
+  .about-text {
+    background: var(--c-white);
+    padding: 5rem calc((100vw - var(--max-w)) / 2 + var(--pad-x)) 5rem calc((100vw - var(--max-w)) / 2 + var(--pad-x));
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
   }
 
-  .badge-num {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-secondary);
+  .about-text p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.85;
   }
 
-  .badge-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #9a7a75;
-    margin-top: 0.2rem;
+  .about-text p:first-child {
+    font-size: 1rem;
+    color: var(--c-text);
+    font-weight: 400;
+    border-left: 3px solid var(--c-accent);
+    padding-left: 1rem;
   }
 
-  .about-image {
-    position: relative;
-    border-radius: 2px;
+  .about-photo {
     overflow: hidden;
-    aspect-ratio: 3/4;
   }
 
-  .about-image img {
+  .about-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
   }
 
-  .about-image::before {
-    content: '';
-    position: absolute;
-    inset: -1.5rem;
-    border: 2px solid var(--color-border);
-    z-index: -1;
-    border-radius: 2px;
-  }
-
-  @media (max-width: 768px) {
-    .about-inner {
+  @media (max-width: 900px) {
+    .about {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
     }
-
-    .about-image {
-      aspect-ratio: 4/3;
-      order: -1;
+    .about-text {
+      padding: 3rem 1.5rem;
     }
-
-    .about-image::before {
-      display: none;
+    .about-photo {
+      height: 55vw;
     }
   }
 </style>

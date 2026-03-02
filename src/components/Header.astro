@@ -1,24 +1,21 @@
 ---
 ---
-
 <header class="header" id="header">
-  <div class="container header-inner">
+  <div class="header-inner container">
     <a href="#hero" class="logo">
-      <img src="/img/logo.png" alt="Stefania's Cafè" width="120" height="60" />
+      <img src="/stefanias-cafe/img/logo.png" alt="Stefania's Cafè" />
     </a>
 
-    <button class="menu-toggle" id="menu-toggle" aria-label="Menu apri/chiudi">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
 
     <nav class="nav" id="nav">
-      <a href="#about">Über uns</a>
-      <a href="#menu">Speisekarte</a>
-      <a href="#hours">Öffnungszeiten</a>
-      <a href="#contact">Kontakt</a>
-      <a href="#reservation" class="nav-cta">Reservieren</a>
+      <a href="#hero">Home</a>
+      <a href="#menu">Menù</a>
+      <a href="#fruehstueck">Frühstück</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#reservation" class="nav-btn">Reservierung</a>
     </nav>
   </div>
 </header>
@@ -26,65 +23,53 @@
 <style>
   .header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0 0 auto;
     z-index: 100;
-    padding: 1.25rem 0;
-    background: rgba(255, 244, 240, 0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--color-border);
-    transition: padding 0.3s ease;
-  }
-
-  .header.scrolled {
-    padding: 0.75rem 0;
+    background: var(--c-black);
+    height: 56px;
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    height: 100%;
   }
 
   .logo img {
-    height: 48px;
+    height: 38px;
     width: auto;
-    object-fit: contain;
-    filter: invert(1) sepia(1) saturate(2) hue-rotate(330deg);
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
   }
 
   .nav {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .nav a {
-    font-size: 0.8rem;
-    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-text);
-    transition: color 0.2s;
+    transition: color 0.15s;
   }
 
-  .nav a:hover {
-    color: var(--color-secondary);
-  }
+  .nav a:hover { color: var(--c-cream); }
 
-  .nav-cta {
-    background: var(--color-secondary);
+  .nav-btn {
+    background: var(--c-accent) !important;
     color: white !important;
-    padding: 0.6rem 1.25rem;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.7rem !important;
   }
 
-  .nav-cta:hover {
-    background: #7a4f3c;
-  }
+  .nav-btn:hover { background: #7a4f3c !important; }
 
-  .menu-toggle {
+  .burger {
     display: none;
     flex-direction: column;
     gap: 5px;
@@ -94,60 +79,36 @@
     padding: 4px;
   }
 
-  .menu-toggle span {
+  .burger span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
-    background: var(--color-text);
-    transition: all 0.3s;
+    background: white;
   }
 
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: flex;
-    }
+  @media (max-width: 720px) {
+    .burger { display: flex; }
 
     .nav {
       display: none;
       position: fixed;
-      top: 72px;
-      left: 0;
-      right: 0;
-      background: var(--color-primary);
+      top: 56px;
+      inset: 56px 0 auto;
+      background: var(--c-black);
       flex-direction: column;
-      padding: 2rem;
-      gap: 1.5rem;
-      border-bottom: 1px solid var(--color-border);
+      padding: 1.5rem;
+      gap: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    .nav.open {
-      display: flex;
-    }
-
-    .nav a {
-      font-size: 1rem;
-    }
+    .nav.open { display: flex; }
+    .nav a { font-size: 0.9rem; }
   }
 </style>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav = document.getElementById('nav');
-  const header = document.getElementById('header');
-
-  toggle?.addEventListener('click', () => {
-    nav?.classList.toggle('open');
-  });
-
-  nav?.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => nav.classList.remove('open'));
-  });
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
-  });
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  burger?.addEventListener('click', () => nav?.classList.toggle('open'));
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 </script>
