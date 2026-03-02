@@ -1,0 +1,159 @@
+---
+---
+
+<section class="contact" id="contact">
+  <div class="container contact-inner">
+    <div class="contact-info">
+      <p class="section-label">Kontakt</p>
+      <h2 class="section-title">Kommt <em>vorbei.</em></h2>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <div>
+            <strong>Adresse</strong>
+            <p>Schiffstraße 12<br />91054 Erlangen, Deutschland</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08z"/>
+          </svg>
+          <div>
+            <strong>Telefon</strong>
+            <a href="tel:+499131205868">+49 9131 205868</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <div>
+            <strong>E-Mail</strong>
+            <a href="mailto:m_stefy83@yahoo.it">m_stefy83@yahoo.it</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+          <div>
+            <strong>Instagram</strong>
+            <a href="https://instagram.com/stefanias_cafe" target="_blank" rel="noopener">@stefanias_cafe</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-map">
+      <div class="map-placeholder">
+        <p>Schiffstraße 12, 91054 Erlangen</p>
+        <a
+          href="https://www.google.com/maps/search/Schiffstra%C3%9Fe+12+Erlangen"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >
+          In Google Maps öffnen
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: var(--section-pad);
+    background: var(--color-light);
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--color-text);
+  }
+
+  .contact-item svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--color-secondary);
+  }
+
+  .contact-item strong {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9a7a75;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-item p,
+  .contact-item a {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .contact-item a:hover {
+    color: var(--color-secondary);
+  }
+
+  .contact-map {
+    aspect-ratio: 1;
+    background: var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .map-placeholder p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .contact-map {
+      aspect-ratio: 4/3;
+    }
+  }
+</style>

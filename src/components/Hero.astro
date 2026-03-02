@@ -1,0 +1,137 @@
+---
+---
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="/img/menu-piatti.jpg" alt="Stefania's Cafè" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <p class="hero-label">Erlangen, Deutschland</p>
+    <h1 class="hero-title">
+      Stefania's<br />
+      <em>Cafè</em>
+    </h1>
+    <p class="hero-sub">
+      Neapolitanische Küche, hausgemacht mit Liebe.<br />
+      Vom Frühstück bis zum Aperitivo.
+    </p>
+    <div class="hero-actions">
+      <a href="#reservation" class="btn btn-primary">Tisch reservieren</a>
+      <a href="#menu" class="btn btn-outline">Speisekarte</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scrolla</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <path d="M8 0v20M1 13l7 7 7-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 15, 14, 0.75) 0%,
+      rgba(137, 90, 69, 0.4) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    max-width: 700px;
+  }
+
+  .hero-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 244, 240, 0.7);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: #f0c9b4;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255, 244, 240, 0.85);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions {
+      flex-direction: column;
+    }
+    .hero-actions .btn {
+      text-align: center;
+    }
+  }
+</style>

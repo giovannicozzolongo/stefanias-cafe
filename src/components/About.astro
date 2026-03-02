@@ -1,0 +1,137 @@
+---
+---
+
+<section class="about" id="about">
+  <div class="container about-inner">
+    <div class="about-text">
+      <p class="section-label">Über uns</p>
+      <h2 class="section-title">
+        Kein gewöhnliches Café.<br />
+        <em>Napoli in Erlangen.</em>
+      </h2>
+      <p class="about-body">
+        Stefania's Cafè è nata da un sogno: portare la tradizione di Napoli fin qui,
+        a Erlangen. Dal caffè al dolce, passando per vini e aperitivi.
+        Un posto semplice, curato in ogni dettaglio, dove si mangia davvero bene.
+      </p>
+      <p class="about-body de">
+        Stefanias Cafè entstand aus dem Traum, die Kultur meiner Stadt Neapel
+        nach Deutschland zu bringen. Vom Kaffee bis zu den typischen Süßspeisen,
+        sowie Wein und Aperitive. Jedes Detail ist gepflegt — genau wie unser Menü.
+        Frische Zutaten, alles selbst gemacht.
+      </p>
+      <div class="about-badges">
+        <div class="badge">
+          <span class="badge-num">100%</span>
+          <span class="badge-label">Hausgemacht</span>
+        </div>
+        <div class="badge">
+          <span class="badge-num">Napoli</span>
+          <span class="badge-label">Tradition seit 1983</span>
+        </div>
+        <div class="badge">
+          <span class="badge-num">Erlangen</span>
+          <span class="badge-label">Schiffstraße 12</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-image">
+      <img src="/img/menu-colazione.jpg" alt="Frühstückstafel bei Stefania's Cafè" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: var(--section-pad);
+    background: var(--color-light);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .about-body.de {
+    color: #7a6260;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--color-border);
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .about-badges {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge-num {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+
+  .badge-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9a7a75;
+    margin-top: 0.2rem;
+  }
+
+  .about-image {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about-image::before {
+    content: '';
+    position: absolute;
+    inset: -1.5rem;
+    border: 2px solid var(--color-border);
+    z-index: -1;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .about-image {
+      aspect-ratio: 4/3;
+      order: -1;
+    }
+
+    .about-image::before {
+      display: none;
+    }
+  }
+</style>

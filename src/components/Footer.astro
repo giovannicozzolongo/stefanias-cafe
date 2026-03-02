@@ -1,0 +1,126 @@
+---
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/img/logo.png" alt="Stefania's Cafè" width="100" />
+      <p>Neapolitanische Küche<br />in Erlangen seit 2019.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#about">Über uns</a>
+      <a href="#menu">Speisekarte</a>
+      <a href="#hours">Öffnungszeiten</a>
+      <a href="#contact">Kontakt</a>
+      <a href="#reservation">Reservieren</a>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://instagram.com/stefanias_cafe" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stefania's Cafè · Schiffstraße 12, 91054 Erlangen</p>
+    <p class="footer-impressum">Steuer-Nr.: MLISFN83B63F839T · <a href="mailto:stefy.milo@libero.it">stefy.milo@libero.it</a></p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-dark);
+    color: rgba(255, 244, 240, 0.7);
+    padding: 4rem 0 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 244, 240, 0.1);
+  }
+
+  .footer-brand img {
+    filter: brightness(0) invert(1) opacity(0.9);
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 244, 240, 0.6);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 244, 240, 0.2);
+    color: rgba(255, 244, 240, 0.6);
+    transition: all 0.2s;
+  }
+
+  .footer-social a:hover {
+    border-color: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    padding: 1.5rem 1.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255, 244, 240, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  .footer-bottom a {
+    color: rgba(255, 244, 240, 0.4);
+  }
+
+  .footer-bottom a:hover {
+    color: rgba(255, 244, 240, 0.7);
+  }
+</style>

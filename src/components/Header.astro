@@ -1,0 +1,153 @@
+---
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#hero" class="logo">
+      <img src="/img/logo.png" alt="Stefania's Cafè" width="120" height="60" />
+    </a>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu apri/chiudi">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav" id="nav">
+      <a href="#about">Über uns</a>
+      <a href="#menu">Speisekarte</a>
+      <a href="#hours">Öffnungszeiten</a>
+      <a href="#contact">Kontakt</a>
+      <a href="#reservation" class="nav-cta">Reservieren</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 0;
+    background: rgba(255, 244, 240, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    transition: padding 0.3s ease;
+  }
+
+  .header.scrolled {
+    padding: 0.75rem 0;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: invert(1) sepia(1) saturate(2) hue-rotate(330deg);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    transition: color 0.2s;
+  }
+
+  .nav a:hover {
+    color: var(--color-secondary);
+  }
+
+  .nav-cta {
+    background: var(--color-secondary);
+    color: white !important;
+    padding: 0.6rem 1.25rem;
+  }
+
+  .nav-cta:hover {
+    background: #7a4f3c;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--color-primary);
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav.open {
+      display: flex;
+    }
+
+    .nav a {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav');
+  const header = document.getElementById('header');
+
+  toggle?.addEventListener('click', () => {
+    nav?.classList.toggle('open');
+  });
+
+  nav?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => nav.classList.remove('open'));
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+</script>
