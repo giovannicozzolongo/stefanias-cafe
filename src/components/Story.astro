@@ -1,0 +1,75 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<section class="story">
+  <div class="story-bg">
+    <img src={`${base}img/Cover_Bresaola.png`} alt="" />
+  </div>
+  <div class="story-overlay"></div>
+  <div class="story-content">
+    <h2>Der Neapolitanische<br />Traum in Deutschland</h2>
+    <p>
+      Stefania's Café entstand aus dem Traum, die Küche ihrer Stadt nach Deutschland zu bringen. Von Kaffee zu den typischen Süßspeisen, sowie Wein und Aperitivo. Stefania's Cafè bietet ein genuinely gemütliches Ambiente und bringt den Charme der authentischen Napoli. Mit einem Team, das wirklich kocht, ist dieser Platz mehr als ein einfaches Café.
+    </p>
+    <p>
+      Stefania's Cafè nasce da un sogno di qualità e savoir-faire. La tradizione della sua terra verso Napoli. Portando la tradizione del Caffè originale Napoli. Sempre con passione per ciò all'autenticità. Il locale trasmette questa semplicità, senza compromessi. Puntando sulle ricette tradizionali che ognuno di noi vorrebbe sempre avere a portata di mano.
+    </p>
+  </div>
+</section>
+
+<style>
+  .story {
+    position: relative;
+    padding: 5rem 2rem;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  .story-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .story-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .story-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 10, 3, 0.72);
+  }
+
+  .story-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-light);
+    text-align: left;
+  }
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: #f0e0c8;
+  }
+
+  p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: #d8c8b0;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const orari = [
+  { day: 'Montag', hours: 'geschlossen' },
+  { day: 'Dienstag', hours: '09:00 – 17:00' },
+  { day: 'Mittwoch', hours: '09:00 – 17:00' },
+  { day: 'Donnerstag', hours: '09:00 – 17:00' },
+  { day: 'Freitag', hours: '09:00 – 17:00' },
+  { day: 'Samstag', hours: '09:00 – 18:00' },
+  { day: 'Sonntag', hours: '09:00 – 18:00' },
+];
+---
+<section class="info" id="gallery">
+  <div class="info-bg">
+    <img src={`${base}img/Bg_fusilli.png`} alt="" />
+  </div>
+  <div class="info-overlay"></div>
+  <div class="info-inner">
+    <div class="info-col">
+      <h2>Dienstleistungen</h2>
+      <ul>
+        <li>Buffet</li>
+        <li>Authentische</li>
+        <li>Private Events</li>
+        <li>Hochzeiten</li>
+        <li>Take-away</li>
+      </ul>
+      <p class="cta-text">Besuche unser Café heute!</p>
+    </div>
+    <div class="info-col">
+      <h2>Öffnungszeiten</h2>
+      <table>
+        {orari.map(o => (
+          <tr class={o.hours === 'geschlossen' ? 'closed' : ''}>
+            <td class="day">{o.day}</td>
+            <td class="hours">{o.hours}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .info {
+    position: relative;
+    padding: 4rem 2rem;
+    background: var(--dark2);
+  }
+
+  .info-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .info-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 12, 4, 0.75);
+  }
+
+  .info-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f0e0c8;
+    margin-bottom: 1.2rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  li {
+    font-size: 0.88rem;
+    color: #d8c8b0;
+    font-weight: 300;
+  }
+
+  .cta-text {
+    font-family: var(--font-script);
+    font-size: 1.4rem;
+    color: var(--brown-light);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tr {
+    border-bottom: 1px solid rgba(245, 232, 208, 0.15);
+  }
+
+  td {
+    padding: 0.35rem 0;
+    font-size: 0.83rem;
+    color: #d8c8b0;
+  }
+
+  .day {
+    font-weight: 400;
+    width: 50%;
+  }
+
+  .hours {
+    font-weight: 300;
+    text-align: right;
+  }
+
+  tr.closed td {
+    color: #8a7060;
+    text-decoration: line-through;
+    text-decoration-color: rgba(138, 112, 96, 0.5);
+  }
+
+  tr:nth-child(4) td, tr:nth-child(5) td {
+    color: var(--brown-light);
+    font-weight: 700;
+  }
+</style>
