@@ -45,8 +45,8 @@ const orari = [
 <style>
   .info {
     position: relative;
-    padding: 4rem 2rem;
-    background: var(--cream2);
+    padding: 4.5rem 2rem;
+    background: var(--dark);
     overflow: hidden;
   }
 
@@ -65,7 +65,7 @@ const orari = [
   .info-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(253, 245, 236, 0.87);
+    background: rgba(22, 12, 4, 0.72);
   }
 
   .info-inner {
@@ -82,7 +82,7 @@ const orari = [
     font-family: var(--font-body);
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #f0e0c8;
     margin-bottom: 1.2rem;
   }
 
@@ -95,14 +95,14 @@ const orari = [
 
   li {
     font-size: 0.88rem;
-    color: #5a3c22;
-    font-weight: 400;
+    color: #d8c8b0;
+    font-weight: 300;
   }
 
   .cta-text {
     font-family: var(--font-script);
-    font-size: 1.4rem;
-    color: var(--brown);
+    font-size: 1.5rem;
+    color: var(--brown-light);
   }
 
   table {
@@ -111,13 +111,13 @@ const orari = [
   }
 
   tr {
-    border-bottom: 1px solid rgba(139, 92, 48, 0.2);
+    border-bottom: 1px solid rgba(245, 232, 208, 0.12);
   }
 
   td {
-    padding: 0.35rem 0;
+    padding: 0.4rem 0;
     font-size: 0.83rem;
-    color: #5a3c22;
+    color: #d8c8b0;
   }
 
   .day {
@@ -131,13 +131,13 @@ const orari = [
   }
 
   tr.closed td {
-    color: #b8a898;
+    color: #7a6858;
     text-decoration: line-through;
-    text-decoration-color: rgba(184, 168, 152, 0.6);
+    text-decoration-color: rgba(122, 104, 88, 0.5);
   }
 
   tr:nth-child(4) td, tr:nth-child(5) td {
-    color: var(--accent);
+    color: var(--brown-light);
     font-weight: 700;
   }
 </style>
