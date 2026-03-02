@@ -1,75 +1,59 @@
 ---
 ---
 <section class="about" id="about">
-  <div class="about-text">
-    <p>
-      Wir sind kein gewöhnliches Kaffeehaus. Entdeckt uns mit allen Sinnen.
-      Stefania bringt die neapolitanische Küche direkt in euer Leben —
-      mit frischen Zutaten, echten Rezepten und der Wärme eines Familienbetriebs.
-      Ob Frühstück, Mittagstisch oder Aperitivo: jeder Besuch ist ein kleines Stück Italien.
-    </p>
-    <p>
-      Stefanias Cafè nasce da un sogno che è quello di esportare la tradizione della mia terra, Napoli.
-      Partendo dal caffè fino al dolce, passando per vini ed aperitivi. Il locale offre un ambiente
-      semplice, ma curato in ogni particolare. Puntiamo sulla semplicità e sull'originalità, per questo
-      troverete sempre prodotti freschi preparati da noi.
-    </p>
-  </div>
-  <div class="about-photo">
-    <img src="/stefanias-cafe/img/menu-colazione.jpg" alt="Menu colazione Stefania's Cafè" />
+  <div class="about-inner container">
+    <div class="about-text">
+      <p class="section-tag">Chi siamo</p>
+      <h2 class="section-heading">Neapels Wärme<br/>erwartet Sie bei Stefania!</h2>
+      <p class="about-body">
+        Willkommen bei Stefanias Cafè in Erlangen — italienischer Kaffee, frische Süßigkeiten und Aperitifs mit Neapel-Sonne!
+      </p>
+      <a href="#reservation" class="btn btn-orange about-btn">Tisch reservieren &rarr;</a>
+    </div>
+    <div class="about-photo">
+      <img src="/stefanias-cafe/img/about-lasagna.png" alt="Lasagna di Stefania" />
+    </div>
   </div>
 </section>
 
 <style>
   .about {
+    background: var(--c-white);
+    padding: 5rem 0;
+  }
+
+  .about-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 340px;
+    gap: 4rem;
+    align-items: center;
   }
 
-  .about-text {
-    background: var(--c-white);
-    padding: 5rem calc((100vw - var(--max-w)) / 2 + var(--pad-x)) 5rem calc((100vw - var(--max-w)) / 2 + var(--pad-x));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.25rem;
-  }
+  .about-text { max-width: 480px; }
 
-  .about-text p {
-    font-size: 0.9rem;
+  .about-body {
+    font-size: 1rem;
     color: var(--c-muted);
     line-height: 1.85;
-  }
-
-  .about-text p:first-child {
-    font-size: 1rem;
-    color: var(--c-text);
-    font-weight: 400;
-    border-left: 3px solid var(--c-accent);
-    padding-left: 1rem;
+    margin-bottom: 2rem;
   }
 
   .about-photo {
+    border-radius: 2px;
     overflow: hidden;
+    aspect-ratio: 4/3;
   }
 
   .about-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center;
   }
 
   @media (max-width: 900px) {
-    .about {
-      grid-template-columns: 1fr;
-    }
-    .about-text {
-      padding: 3rem 1.5rem;
-    }
-    .about-photo {
-      height: 55vw;
-    }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-text { max-width: 100%; }
+    .about-photo { aspect-ratio: 16/9; }
   }
 </style>

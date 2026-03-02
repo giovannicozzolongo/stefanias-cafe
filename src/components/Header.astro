@@ -1,73 +1,68 @@
 ---
 ---
-<header class="header" id="header">
+<header class="header">
   <div class="header-inner container">
     <a href="#hero" class="logo">
       <img src="/stefanias-cafe/img/logo.png" alt="Stefania's Cafè" />
     </a>
-
+    <nav class="nav" id="nav">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menù</a>
+      <a href="#orari">Öffnungszeiten</a>
+      <a href="#reservation" class="nav-cta">Reservation</a>
+    </nav>
     <button class="burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
-
-    <nav class="nav" id="nav">
-      <a href="#hero">Home</a>
-      <a href="#menu">Menù</a>
-      <a href="#fruehstueck">Frühstück</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#reservation" class="nav-btn">Reservierung</a>
-    </nav>
   </div>
 </header>
 
 <style>
   .header {
-    position: fixed;
-    inset: 0 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    background: var(--c-black);
-    height: 56px;
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
+    height: 70px;
   }
 
   .logo img {
-    height: 38px;
+    height: 42px;
     width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.92;
   }
 
   .nav {
     display: flex;
     align-items: center;
-    gap: 1.75rem;
+    gap: 2rem;
   }
 
   .nav a {
-    color: rgba(255,255,255,0.85);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.9);
     transition: color 0.15s;
   }
 
-  .nav a:hover { color: var(--c-cream); }
+  .nav a:hover { color: #fff; }
 
-  .nav-btn {
-    background: var(--c-accent) !important;
-    color: white !important;
-    padding: 0.45rem 1.1rem;
-    font-size: 0.7rem !important;
+  .nav-cta {
+    background: var(--c-orange) !important;
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    font-weight: 700;
   }
-
-  .nav-btn:hover { background: #7a4f3c !important; }
+  .nav-cta:hover { background: #b8521f !important; }
 
   .burger {
     display: none;
@@ -78,37 +73,28 @@
     cursor: pointer;
     padding: 4px;
   }
+  .burger span { display: block; width: 22px; height: 2px; background: #fff; }
 
-  .burger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: white;
-  }
-
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     .burger { display: flex; }
-
     .nav {
       display: none;
       position: fixed;
-      top: 56px;
-      inset: 56px 0 auto;
-      background: var(--c-black);
+      top: 70px;
+      inset: 70px 0 auto;
+      background: rgba(20,20,20,0.97);
       flex-direction: column;
       padding: 1.5rem;
       gap: 1.25rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
     }
-
     .nav.open { display: flex; }
-    .nav a { font-size: 0.9rem; }
+    .nav a { font-size: 1rem; }
   }
 </style>
 
 <script>
   const burger = document.getElementById('burger');
-  const nav    = document.getElementById('nav');
+  const nav = document.getElementById('nav');
   burger?.addEventListener('click', () => nav?.classList.toggle('open'));
-  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav?.classList.remove('open')));
 </script>

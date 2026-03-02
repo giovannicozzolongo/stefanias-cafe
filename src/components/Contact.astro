@@ -1,53 +1,84 @@
 ---
 ---
 <section class="contact" id="kontakt">
-  <div class="contact-photo">
-    <img src="/stefanias-cafe/img/menu-colazione.jpg" alt="Stefania's Cafè — Schiffstraße 12, Erlangen" />
-  </div>
-  <div class="contact-info">
-    <p class="section-tag">Kontakt & Anfahrt</p>
-    <h2 class="section-heading">Kommt vorbei.</h2>
-
-    <ul class="contact-list">
-      <li>
-        <strong>Adresse</strong>
-        <span>Schiffstraße 12<br/>91054 Erlangen, Deutschland</span>
-      </li>
-      <li>
-        <strong>Telefon</strong>
-        <a href="tel:+499131205868">+49 9131 205868</a>
-      </li>
-      <li>
-        <strong>E-Mail</strong>
-        <a href="mailto:m_stefy83@yahoo.it">m_stefy83@yahoo.it</a>
-      </li>
-      <li>
-        <strong>Instagram</strong>
-        <a href="https://instagram.com/stefanias_cafe" target="_blank" rel="noopener">@stefanias_cafe</a>
-      </li>
-    </ul>
-
+  <div class="container">
+    <h2 class="contact-heading">Komm uns besuchen.</h2>
+    <div class="contact-grid">
+      <div class="contact-col">
+        <p class="contact-label">Address</p>
+        <p class="contact-val">Schiffstraße 12<br/>91054 Erlangen, Germany</p>
+      </div>
+      <div class="contact-col">
+        <p class="contact-label">Email Address</p>
+        <a href="mailto:m_stefy83@yahoo.it" class="contact-val contact-link">m_stefy83@yahoo.it</a>
+      </div>
+      <div class="contact-col">
+        <p class="contact-label">Phone Number</p>
+        <a href="tel:+499131205868" class="contact-val contact-link">+49 9131 205868</a>
+      </div>
+    </div>
     <a
       href="https://www.google.com/maps/search/Schiffstra%C3%9Fe+12+Erlangen"
       target="_blank"
       rel="noopener"
-      class="btn btn-dark"
-      style="margin-top: 2rem; display: inline-block"
+      class="btn btn-dark maps-btn"
     >
       In Google Maps öffnen
     </a>
+  </div>
+
+  <div class="contact-photo">
+    <img src="/stefanias-cafe/img/outdoor.png" alt="Stefania's Cafè — esterno" />
   </div>
 </section>
 
 <style>
   .contact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 420px;
+    background: var(--c-cream);
+    padding: 5rem 0;
+    border-top: 1px solid var(--c-border);
   }
 
+  .contact-heading {
+    font-family: var(--font-brand);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--c-dark);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--c-orange);
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-val {
+    font-size: 0.95rem;
+    color: var(--c-text);
+    line-height: 1.6;
+  }
+
+  .contact-link { transition: color 0.15s; }
+  .contact-link:hover { color: var(--c-orange); }
+
+  .maps-btn { margin-top: 0.5rem; }
+
   .contact-photo {
+    margin-top: 3rem;
+    border-radius: 2px;
     overflow: hidden;
+    max-height: 380px;
+    width: 100%;
   }
 
   .contact-photo img {
@@ -55,51 +86,9 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(0.85);
   }
 
-  .contact-info {
-    background: var(--c-warm);
-    padding: 5rem calc((100vw - var(--max-w)) / 2 + var(--pad-x)) 5rem 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .contact-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-top: 2rem;
-  }
-
-  .contact-list li {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .contact-list strong {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--c-accent);
-  }
-
-  .contact-list span,
-  .contact-list a {
-    font-size: 0.9rem;
-    color: var(--c-text);
-    line-height: 1.6;
-  }
-
-  .contact-list a:hover { color: var(--c-accent); }
-
-  @media (max-width: 900px) {
-    .contact { grid-template-columns: 1fr; }
-    .contact-photo { height: 55vw; order: -1; }
-    .contact-info { padding: 3rem 1.5rem; }
+  @media (max-width: 720px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   }
 </style>
