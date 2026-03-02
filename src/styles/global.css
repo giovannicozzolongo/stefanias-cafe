@@ -17,8 +17,9 @@
   --font-brand: 'Dancing Script', cursive;
   --font-body:  'Raleway', sans-serif;
 
-  --max-w:   1160px;
-  --pad-x:   2rem;
+  --max-w:        1160px;
+  --pad-x:        2rem;
+  --pad-section:  5rem 2rem;
 }
 
 html { scroll-behavior: smooth; }
