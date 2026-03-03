@@ -22,12 +22,24 @@ const images = [
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
       {images.map((image, i) => (
-        <div class={`overflow-hidden ${i === 3 || i === 4 ? 'md:col-span-2' : ''}`}>
+        <div class={`overflow-hidden relative ${i === 3 || i === 4 ? 'md:col-span-2' : ''}`}>
           <img
             src={image.src}
             alt={image.alt}
             class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500"
           />
+          {i === 0 && (
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <svg viewBox="0 0 200 200" class="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
+                <defs>
+                  <path id="curve-caprese" d="M 30,100 A 70,70 0 1,1 170,100" />
+                </defs>
+                <text fill="white" font-size="15" font-family="'Garet', sans-serif" font-weight="bold" letter-spacing="4">
+                  <textPath href="#curve-caprese" startOffset="10%">CAPRESE FRESCA</textPath>
+                </text>
+              </svg>
+            </div>
+          )}
         </div>
       ))}
     </div>
