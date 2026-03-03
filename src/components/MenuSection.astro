@@ -1,0 +1,76 @@
+---
+const fruhstuck = [
+  { name: 'Cappuccino', price: '3,50 €' },
+  { name: 'Caffè Latte', price: '4,00 €' },
+  { name: 'Espresso', price: '2,50 €' },
+  { name: 'Cornetto al Burro', price: '2,80 €' },
+  { name: 'Cornetto con Marmellata', price: '3,20 €' },
+  { name: 'Avocado Toast', price: '9,50 €' },
+  { name: 'Uova Strapazzate', price: '8,00 €' },
+  { name: 'Granola con Yogurt', price: '6,50 €' },
+  { name: 'Brioche Napoletana', price: '3,00 €' },
+];
+
+const speisekarte = [
+  { name: 'Pasta al Pomodoro', price: '12,00 €' },
+  { name: 'Fusilli al Pesto', price: '13,00 €' },
+  { name: 'Lasagna della Casa', price: '14,50 €' },
+  { name: 'Caprese Fresca', price: '10,00 €' },
+  { name: 'Bresaola con Rucola', price: '13,50 €' },
+  { name: 'Tiramisù', price: '6,00 €' },
+  { name: 'Pastiera Napoletana', price: '5,50 €' },
+  { name: 'Aperol Spritz', price: '8,00 €' },
+  { name: 'Limonata Artigianale', price: '4,50 €' },
+];
+---
+
+<section id="menu" class="bg-cream relative overflow-hidden py-20 md:py-28">
+  <!-- Big watermark "Menu" -->
+  <div
+    class="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <span
+      class="font-sauce font-bold text-brown-dark opacity-[0.06] leading-none"
+      style="font-size: clamp(12rem, 30vw, 22rem);"
+    >
+      Menu
+    </span>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-6 md:px-12">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
+
+      <!-- Frühstück -->
+      <div>
+        <h2 class="font-garet font-bold text-dark text-2xl md:text-3xl mb-8 pb-3 border-b-2 border-brown-dark">
+          Frühstück
+        </h2>
+        <ul class="flex flex-col gap-4">
+          {fruhstuck.map(item => (
+            <li class="flex items-baseline justify-between gap-4">
+              <span class="font-sauce text-brown-dark text-base">{item.name}</span>
+              <span class="font-sauce text-terracotta font-bold text-base shrink-0">{item.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Speisekarte -->
+      <div>
+        <h2 class="font-garet font-bold text-dark text-2xl md:text-3xl mb-8 pb-3 border-b-2 border-brown-dark">
+          Speisekarte
+        </h2>
+        <ul class="flex flex-col gap-4">
+          {speisekarte.map(item => (
+            <li class="flex items-baseline justify-between gap-4">
+              <span class="font-sauce text-brown-dark text-base">{item.name}</span>
+              <span class="font-sauce text-terracotta font-bold text-base shrink-0">{item.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>

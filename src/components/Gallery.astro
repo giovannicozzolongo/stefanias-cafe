@@ -1,0 +1,34 @@
+---
+const images = [
+  { src: '/images/Media_caprese.png', alt: 'Caprese' },
+  { src: '/images/Media_lasagna.png', alt: 'Lasagna' },
+  { src: '/images/Cover2_aperitivo.png', alt: 'Aperitivo' },
+  { src: '/images/Media_outdoor_cafè.png', alt: 'Outdoor Cafè' },
+  { src: '/images/Media_pasta.png', alt: 'Pasta' },
+  { src: '/images/Media_pastiera.png', alt: 'Pastiera' },
+  { src: '/images/Media_tiramisù.png', alt: 'Tiramisù' },
+  { src: '/images/Cover_Bresaola.png', alt: 'Bresaola' },
+];
+---
+
+<section id="gallery" class="bg-terracotta py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+    <h2 class="font-garet font-bold text-white text-4xl md:text-5xl mb-12">
+      Gallery
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      {images.map((img, i) => (
+        <div class={`overflow-hidden ${i === 3 || i === 4 ? 'md:col-span-2' : ''}`}>
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

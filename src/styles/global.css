@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* ─── Font-face declarations ─── */
+
+@font-face {
+  font-family: 'Garet';
+  src: url('/fonts/Garet/fonts/fonnts.com-garet-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Garet';
+  src: url('/fonts/Garet/fonts/fonnts.com-garet-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Garet';
+  src: url('/fonts/Garet/fonts/fonnts.com-garet-extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Garet';
+  src: url('/fonts/Garet/fonts/fonnts.com-garet-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/Open Sauce/OpenSauceOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/Open Sauce/OpenSauceOne-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/Open Sauce/OpenSauceOne-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/Open Sauce/OpenSauceOne-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Tailwind v4 theme ─── */
+
+@theme {
+  --color-dark: #140f0f;
+  --color-cream: #fff4f0;
+  --color-beige: #e0d8cf;
+  --color-terracotta: #895a45;
+  --color-brown-dark: #38261c;
+  --color-brown-mid: #4a3433;
+
+  --font-garet: 'Garet', sans-serif;
+  --font-sauce: 'Open Sauce One', sans-serif;
+  --font-sans: 'Open Sans', sans-serif;
+}
+
+/* ─── Base ─── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sauce);
+  background: var(--color-cream);
+  color: var(--color-brown-dark);
+}

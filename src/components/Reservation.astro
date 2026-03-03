@@ -1,0 +1,80 @@
+---
+const timeSlots = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+
+const days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+const calDays = [
+  [null, null, 1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10, 11, 12],
+  [13, 14, 15, 16, 17, 18, 19],
+  [20, 21, 22, 23, 24, 25, 26],
+  [27, 28, 29, 30, 31, null, null],
+];
+---
+
+<section id="reservation" class="bg-cream py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 md:px-12">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+
+      <!-- Calendar column -->
+      <div>
+        <h2 class="font-garet font-bold text-brown-dark text-4xl md:text-5xl mb-10">
+          Reservation
+        </h2>
+
+        <!-- Month nav -->
+        <div class="flex items-center justify-between mb-6">
+          <button class="text-brown-dark hover:text-terracotta transition-colors font-bold text-xl">‹</button>
+          <span class="font-garet font-bold text-brown-dark text-lg">März 2026</span>
+          <button class="text-brown-dark hover:text-terracotta transition-colors font-bold text-xl">›</button>
+        </div>
+
+        <!-- Day headers -->
+        <div class="grid grid-cols-7 mb-2">
+          {days.map(d => (
+            <div class="text-center font-garet text-brown-mid text-sm py-1">{d}</div>
+          ))}
+        </div>
+
+        <!-- Calendar grid -->
+        {calDays.map(week => (
+          <div class="grid grid-cols-7">
+            {week.map(day => (
+              <div class={`
+                text-center py-2 text-sm cursor-pointer rounded-sm transition-colors
+                ${day ? 'font-garet text-brown-dark hover:bg-terracotta hover:text-white' : ''}
+                ${day === 15 ? 'bg-terracotta text-white' : ''}
+              `}>
+                {day ?? ''}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <!-- Time picker column -->
+      <div>
+        <h2 class="font-garet font-bold text-brown-dark text-4xl md:text-5xl mb-10">
+          Pick a time
+        </h2>
+        <div class="flex flex-col gap-3">
+          {timeSlots.map((slot, i) => (
+            <button class={`
+              w-full py-3 px-6 text-left font-garet text-sm border transition-colors duration-150
+              ${i === 2
+                ? 'bg-terracotta text-white border-terracotta'
+                : 'bg-white text-brown-dark border-beige hover:border-terracotta hover:text-terracotta'
+              }
+            `}>
+              {slot}
+            </button>
+          ))}
+        </div>
+
+        <button class="mt-8 w-full bg-brown-dark text-white font-garet font-bold py-4 hover:bg-terracotta transition-colors duration-200">
+          Jetzt reservieren
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
