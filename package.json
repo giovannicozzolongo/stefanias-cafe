@@ -9,8 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
+    "playwright": "^1.58.2",
     "tailwindcss": "^4.2.1"
   }
 }

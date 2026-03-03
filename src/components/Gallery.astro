@@ -1,13 +1,15 @@
 ---
+import { img } from '../utils/url';
+
 const images = [
-  { src: '/images/Media_caprese.png', alt: 'Caprese' },
-  { src: '/images/Media_lasagna.png', alt: 'Lasagna' },
-  { src: '/images/Cover2_aperitivo.png', alt: 'Aperitivo' },
-  { src: '/images/Media_outdoor_cafe.png', alt: 'Outdoor Cafè' },
-  { src: '/images/Media_pasta.png', alt: 'Pasta' },
-  { src: '/images/Media_pastiera.png', alt: 'Pastiera' },
-  { src: '/images/Media_tiramisu.png', alt: 'Tiramisù' },
-  { src: '/images/Cover_Bresaola.png', alt: 'Bresaola' },
+  { src: img('images/Media_caprese.png'), alt: 'Caprese' },
+  { src: img('images/Media_lasagna.png'), alt: 'Lasagna' },
+  { src: img('images/Cover2_aperitivo.png'), alt: 'Aperitivo' },
+  { src: img('images/Media_outdoor_cafe.png'), alt: 'Outdoor Cafè' },
+  { src: img('images/Media_pasta.png'), alt: 'Pasta' },
+  { src: img('images/Media_pastiera.png'), alt: 'Pastiera' },
+  { src: img('images/Media_tiramisu.png'), alt: 'Tiramisù' },
+  { src: img('images/Cover_Bresaola.png'), alt: 'Bresaola' },
 ];
 ---
 
@@ -19,11 +21,11 @@ const images = [
     </h2>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-      {images.map((img, i) => (
+      {images.map((image, i) => (
         <div class={`overflow-hidden ${i === 3 || i === 4 ? 'md:col-span-2' : ''}`}>
           <img
-            src={img.src}
-            alt={img.alt}
+            src={image.src}
+            alt={image.alt}
             class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500"
           />
         </div>

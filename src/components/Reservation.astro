@@ -39,12 +39,14 @@ const calDays = [
         {calDays.map(week => (
           <div class="grid grid-cols-7">
             {week.map(day => (
-              <div class={`
-                text-center py-2 text-sm cursor-pointer rounded-sm transition-colors
-                ${day ? 'font-garet text-brown-dark hover:bg-terracotta hover:text-white' : ''}
-                ${day === 15 ? 'bg-terracotta text-white' : ''}
-              `}>
-                {day ?? ''}
+              <div class="flex items-center justify-center py-1">
+                <div class={`
+                  w-9 h-9 rounded-full flex items-center justify-center text-sm cursor-pointer transition-colors
+                  ${day ? 'font-garet text-brown-dark hover:bg-terracotta hover:text-white' : ''}
+                  ${day === 15 ? 'bg-terracotta text-white' : ''}
+                `}>
+                  {day ?? ''}
+                </div>
               </div>
             ))}
           </div>
