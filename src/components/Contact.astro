@@ -1,20 +1,8 @@
 ---
-const amenities = [
-  { icon: '♿', label: 'Barrierefrei' },
-  { icon: '📶', label: 'Free Wi-Fi' },
-  { icon: '🐾', label: 'Haustierfreundlich' },
-];
-
 const hours = [
   { day: 'Mo – Fr', time: '07:30 – 18:00' },
   { day: 'Samstag', time: '08:00 – 17:00' },
   { day: 'Sonntag', time: '09:00 – 15:00' },
-];
-
-const socials = [
-  { label: 'Instagram', href: '#' },
-  { label: 'Facebook', href: '#' },
-  { label: 'Google', href: '#' },
 ];
 ---
 
@@ -49,13 +37,56 @@ const socials = [
         </ul>
 
         <!-- Amenities -->
-        <ul class="flex flex-col gap-3">
-          {amenities.map(a => (
-            <li class="flex items-center gap-3 font-garet text-dark text-base">
-              <span class="text-xl">{a.icon}</span>
-              {a.label}
-            </li>
-          ))}
+        <ul class="flex flex-col gap-4">
+
+          <!-- Barrierefrei -->
+          <li class="flex items-center gap-3 font-garet text-dark text-base">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Testa -->
+              <circle cx="12" cy="3.5" r="2" fill="#38261c"/>
+              <!-- Corpo e sedia a rotelle -->
+              <path d="M9 8h4l1.5 4H18v2h-4.5L12 10.5V8" fill="#38261c"/>
+              <path d="M9 8v5l-2 3h2l1.5-2.5" fill="#38261c"/>
+              <!-- Ruota grande -->
+              <circle cx="10" cy="18" r="3" stroke="#38261c" stroke-width="1.5" fill="none"/>
+              <!-- Ruota piccola -->
+              <circle cx="16" cy="17" r="1.5" stroke="#38261c" stroke-width="1.5" fill="none"/>
+            </svg>
+            Barrierefrei
+          </li>
+
+          <!-- Free Wi-Fi -->
+          <li class="flex items-center gap-3 font-garet text-dark text-base">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Arco grande -->
+              <path d="M2.5 9.5C6.5 5.5 17.5 5.5 21.5 9.5" stroke="#38261c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <!-- Arco medio -->
+              <path d="M5.5 12.5C8 10 16 10 18.5 12.5" stroke="#38261c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <!-- Arco piccolo -->
+              <path d="M8.5 15.5C9.8 14.2 14.2 14.2 15.5 15.5" stroke="#38261c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <!-- Punto -->
+              <circle cx="12" cy="19" r="1.3" fill="#38261c"/>
+            </svg>
+            Free Wi-Fi
+          </li>
+
+          <!-- Haustierfreundlich -->
+          <li class="flex items-center gap-3 font-garet text-dark text-base">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Zampa principale -->
+              <ellipse cx="12" cy="15" rx="4" ry="3.5" fill="#38261c"/>
+              <!-- Dito 1 -->
+              <ellipse cx="7.5" cy="11.5" rx="1.6" ry="2.2" fill="#38261c"/>
+              <!-- Dito 2 -->
+              <ellipse cx="10.5" cy="9.5" rx="1.6" ry="2.2" fill="#38261c"/>
+              <!-- Dito 3 -->
+              <ellipse cx="13.5" cy="9.5" rx="1.6" ry="2.2" fill="#38261c"/>
+              <!-- Dito 4 -->
+              <ellipse cx="16.5" cy="11.5" rx="1.6" ry="2.2" fill="#38261c"/>
+            </svg>
+            Haustierfreundlich
+          </li>
+
         </ul>
       </div>
 
@@ -64,22 +95,48 @@ const socials = [
         <h3 class="font-garet text-brown-mid text-xl font-normal mb-6">
           Folge uns auf Social Media
         </h3>
-        <ul class="flex gap-5 mb-10">
-          {socials.map(s => (
-            <li>
-              <a
-                href={s.href}
-                class="font-garet text-brown-dark text-sm uppercase tracking-widest hover:text-terracotta transition-colors duration-200"
-              >
-                {s.label}
-              </a>
-            </li>
-          ))}
+        <ul class="flex gap-4 mb-10">
+
+          <!-- Instagram -->
+          <li>
+            <a href="#" aria-label="Instagram" class="flex items-center justify-center w-10 h-10 rounded-full border border-brown-dark text-brown-dark hover:bg-brown-dark hover:text-white transition-colors duration-200">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+
+          <!-- Facebook -->
+          <li>
+            <a href="#" aria-label="Facebook" class="flex items-center justify-center w-10 h-10 rounded-full border border-brown-dark text-brown-dark hover:bg-brown-dark hover:text-white transition-colors duration-200">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </a>
+          </li>
+
+          <!-- Google Maps -->
+          <li>
+            <a href="#" aria-label="Google Maps" class="flex items-center justify-center w-10 h-10 rounded-full border border-brown-dark text-brown-dark hover:bg-brown-dark hover:text-white transition-colors duration-200">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+              </svg>
+            </a>
+          </li>
+
         </ul>
 
         <!-- Map placeholder -->
-        <div class="w-full aspect-video bg-beige flex items-center justify-center">
-          <p class="font-garet text-brown-mid text-sm">Google Maps</p>
+        <div class="w-full aspect-video bg-[#f5ede3] flex flex-col items-center justify-center gap-3 rounded-sm">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#38261c" opacity="0.25"/>
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#38261c" stroke-width="1.5" fill="none"/>
+            <circle cx="12" cy="9" r="2.5" stroke="#38261c" stroke-width="1.5" fill="none"/>
+          </svg>
+          <p class="font-garet text-brown-mid text-sm tracking-wide">Musterstraße 12, Erlangen</p>
         </div>
       </div>
 
